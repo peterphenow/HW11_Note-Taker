@@ -20,13 +20,12 @@ app.listen(PORT, function () {
 
 // Routes
 // ===================================
-
-// wildcard route to send user to "home" page
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./public/index.html"));
-});
-
 // Route to the notes page
 app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/notes.html"));
+});
+
+// wildcard route to send user to "home" page
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
