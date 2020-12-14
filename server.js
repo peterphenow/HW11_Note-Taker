@@ -58,3 +58,22 @@ app.post("/api/notes", function (req, res) {
 
   res.json(noteData);
 });
+
+// Create route to delete notes
+app.delete("/api/notes/:id", function (req, res) {
+  let noteData = JSON.parse(fs.readFileSync("./db/db.json"));
+  let noteID = req.params.id;
+  let newID = 0;
+
+  noteData = noteData.filter((currNote) => {
+    return currNote.id != noteID;
+  });
+
+  for (currNote of noteData) {
+    currNote.id = newID.toString();
+    newID++;
+  }
+
+  fs.writeFileSync("./db/db.json", JSON.stringify(noteData, null, 2));
+  res.json(noteData);
+});
