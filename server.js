@@ -20,6 +20,11 @@ app.listen(PORT, function () {
   console.log("App listening at http://localhost:" + PORT);
 });
 
+// notes data
+// let notes = {
+//   table: [],
+// };
+
 // Routes
 // ===================================
 // Route to the notes page
@@ -35,4 +40,17 @@ app.get("/api/notes", function (reg, res) {
 // wildcard route to send user to "home" page for any unspecified extensions
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+
+// Create new note and save to db.json
+app.post("/api/notes", function (req, res) {
+  let newNote = req.body;
+
+  //read current contents of db.json
+  const noteData = JSON.parse(fs.readFileSync("./db/db.json"));
+  //push new note to array
+  noteData.push(newNote);
+
+  // save new array to db.json
+  fs.writeFileSync("./db/db.json", JSON.stringify(noteData, null, 2));
 });
