@@ -21,9 +21,7 @@ app.listen(PORT, function () {
 });
 
 // notes data
-let noteData = {
-  table: [],
-};
+let noteData = JSON.parse(fs.readFileSync("./db/db.json"));
 
 // Routes
 // ===================================
@@ -33,11 +31,26 @@ app.get("/notes", function (req, res) {
 });
 
 // route to get display db.json file
-app.get("/api/notes", function (reg, res) {
+app.get("/api/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "./db/db.json"));
 });
 
-// wildcard route to send user to "home" page for any unspecified extensions
+//display a single note
+app.get("/api/notes/:note", function (req, res) {
+  let chosen = req.params.note;
+  //let noteData = JSON.parse(fs.readFileSync("./db/db.json"));
+  // console.log(chosen);
+
+  for (let i = 0; i < noteData.length; i++) {
+    if (chosen === noteData[i].title) {
+      return res.json(noteData[i]);
+    }
+  }
+
+  return res.json(false);
+});
+
+// wildcard route to send user to "home" page for any unspecified routes
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/index.html"));
 });
