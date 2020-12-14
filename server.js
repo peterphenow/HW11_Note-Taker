@@ -53,4 +53,6 @@ app.post("/api/notes", function (req, res) {
 
   // save new array to db.json
   fs.writeFileSync("./db/db.json", JSON.stringify(noteData, null, 2));
+
+  res.json(noteData);
 });
