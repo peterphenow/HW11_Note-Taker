@@ -21,9 +21,9 @@ app.listen(PORT, function () {
 });
 
 // notes data
-// let notes = {
-//   table: [],
-// };
+let noteData = {
+  table: [],
+};
 
 // Routes
 // ===================================
@@ -44,10 +44,12 @@ app.get("*", function (req, res) {
 
 // Create new note and save to db.json
 app.post("/api/notes", function (req, res) {
-  let newNote = req.body;
-
   //read current contents of db.json
   const noteData = JSON.parse(fs.readFileSync("./db/db.json"));
+  let newNote = req.body;
+  let noteID = noteData.length.toString();
+  newNote.id = noteID;
+
   //push new note to array
   noteData.push(newNote);
 
