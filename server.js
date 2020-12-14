@@ -27,7 +27,12 @@ app.get("/notes", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
-// wildcard route to send user to "home" page
+// route to get display db.json file
+app.get("/api/notes", function (reg, res) {
+  res.sendFile(path.join(__dirname, "./db/db.json"));
+});
+
+// wildcard route to send user to "home" page for any unspecified extensions
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/index.html"));
 });
