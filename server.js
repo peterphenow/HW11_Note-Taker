@@ -7,7 +7,7 @@ let fs = require("fs");
 // Set up the express app
 // ===================================
 let app = express();
-let PORT = process.env.PORT || 3001;
+let PORT = process.env.PORT || 8080;
 
 // sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -38,7 +38,6 @@ app.get("/api/notes", function (req, res) {
 //display a single note
 app.get("/api/notes/:note", function (req, res) {
   let chosen = req.params.note;
-  //let noteData = JSON.parse(fs.readFileSync("./db/db.json"));
   // console.log(chosen);
 
   for (let i = 0; i < noteData.length; i++) {
