@@ -20,9 +20,6 @@ app.listen(PORT, function () {
   console.log("App listening at http://localhost:" + PORT);
 });
 
-// notes data
-let noteData = JSON.parse(fs.readFileSync("./db/db.json"));
-
 // Routes
 // ===================================
 // Route to the notes page
