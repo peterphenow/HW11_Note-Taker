@@ -10,7 +10,9 @@ The main concept of this homework assignment was to use express.js to create the
 
 The app is deployed on heroku [here](https://desolate-inlet-65279.herokuapp.com/).
 
-![](./assets/Note_Taker.gif)
+<p align="center">
+<img src="./assets/Note_Taker.gif" alt="app demo" />
+</p>
 
 ## **License**
 
